@@ -8,6 +8,7 @@ import com.hkk.commonutils.R;
 import com.hkk.eduservice.entity.EduTeacher;
 import com.hkk.eduservice.entity.vo.TeacherQuery;
 import com.hkk.eduservice.service.EduTeacherService;
+import com.hkk.servicebase.exceptionhandler.GuliException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -72,7 +73,13 @@ public class EduTeacherController {
         //调用方法的时候，底层封装，把分页所有数据封装到pageTeacher对象里面
         teacherService.page(pageTeacher,null);
 
-        int i = 10/0;
+
+        try {
+            int i = 10/0;
+        } catch (Exception e) {
+            //执行自定义异常
+            throw new GuliException(20001,"执行了自定义异常处理....");
+        }
 
         long total = pageTeacher.getTotal();//总记录数
         List<EduTeacher> records = pageTeacher.getRecords();//数据list集合
