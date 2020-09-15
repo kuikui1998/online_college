@@ -3,6 +3,7 @@ package com.hkk.servicebase.exceptionhandler;
 
 
 import com.hkk.commonutils.R;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @create 2020-09-15 10:41
  */
 @ControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     //指定出现什么异常会执行这个方法
@@ -34,6 +36,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(GuliException.class)
     @ResponseBody //为了能够返回数据
     public R error(GuliException e){
+        log.error(e.getMessage());
         e.printStackTrace();
         return R.error().code(e.getCode()).message(e.getMsg());
     }
