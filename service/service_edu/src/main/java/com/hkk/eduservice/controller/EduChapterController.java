@@ -5,6 +5,7 @@ import com.hkk.commonutils.R;
 import com.hkk.eduservice.entity.EduChapter;
 import com.hkk.eduservice.entity.chapter.ChapterVo;
 import com.hkk.eduservice.service.EduChapterService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ import java.util.List;
  * @author testjava
  * @since 2020-09-26
  */
+@Api(description="课程章节管理")
 @RestController
 @RequestMapping("/eduservice/chapter")
 @CrossOrigin
