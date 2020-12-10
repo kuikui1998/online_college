@@ -3,6 +3,7 @@ package com.hkk.eduservice.service.impl;
 import com.hkk.eduservice.entity.EduCourse;
 import com.hkk.eduservice.entity.EduCourseDescription;
 import com.hkk.eduservice.entity.vo.CourseInfoVo;
+import com.hkk.eduservice.entity.vo.CoursePublishVo;
 import com.hkk.eduservice.mapper.EduCourseMapper;
 import com.hkk.eduservice.service.EduCourseDescriptionService;
 import com.hkk.eduservice.service.EduCourseService;
@@ -87,5 +88,13 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         description.setId(courseInfoVo.getId());
         description.setDescription(courseInfoVo.getDescription());
         courseDescriptionService.updateById(description);
+    }
+
+    //根据id查询课程确认信息
+    @Override
+    public CoursePublishVo publishCourseInfo(String id) {
+        //调用和mapper
+        CoursePublishVo publishCourseInfo = baseMapper.getPublishCourseInfo(id);
+        return publishCourseInfo;
     }
 }

@@ -2,7 +2,9 @@ package com.hkk.eduservice.controller;
 
 
 import com.hkk.commonutils.R;
+import com.hkk.eduservice.entity.EduCourse;
 import com.hkk.eduservice.entity.vo.CourseInfoVo;
+import com.hkk.eduservice.entity.vo.CoursePublishVo;
 import com.hkk.eduservice.service.EduCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +44,24 @@ public class EduCourseController {
     @PostMapping("updateCourseInfo")
     public R updateCourseInfo(@RequestBody CourseInfoVo courseInfoVo){
         courseService.updateCourseInfo(courseInfoVo);
+        return R.ok();
+    }
+
+    //根据id查询课程确认信息
+    @GetMapping("getPublishCourseInfo/{id}")
+    public R getPublishCourseInfo(@PathVariable String id){
+        CoursePublishVo coursePublishVo = courseService.publishCourseInfo(id);
+        return R.ok().data("publishCourse",coursePublishVo);
+    }
+
+    //课程最终发布
+    //修改课程状态
+    @PostMapping("publishCourse/{id}")
+    public R publishCourse(@PathVariable String id){
+        EduCourse eduCourse = new EduCourse();
+        eduCourse.setId(id);
+        eduCourse.setStatus("Normal");//设置状态
+        courseService.updateById(eduCourse);
         return R.ok();
     }
 
